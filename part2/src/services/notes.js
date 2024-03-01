@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/notes'
+const baseUrl = 'https://fullstack2-0.onrender.com/api/notes'
 
 
 const getAll = () => {
