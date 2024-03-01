@@ -69,17 +69,17 @@ const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
-app.get('https://fullstack2-0.onrender.com/', (request, response) => {
+app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
-app.get('https://fullstack2-0.onrender.com/api/notes', (request, response) => {
+app.get('/api/notes', (request, response) => {
   Note.find({}).then(notes => {
     response.json(notes)
   })
 })
 
-app.post('https://fullstack2-0.onrender.com/api/notes', (request, response, next) => {
+app.post('/api/notes', (request, response, next) => {
   const body = request.body
 
   if (body.content === undefined) {
@@ -97,7 +97,7 @@ app.post('https://fullstack2-0.onrender.com/api/notes', (request, response, next
   .catch(error => next(error))
 })
 
-app.get('https://fullstack2-0.onrender.com/api/notes/:id', (request, response, next) => {
+app.get('/api/notes/:id', (request, response, next) => {
   Note.findById(request.params.id)
     .then(note => {
       if (note) {
@@ -109,7 +109,7 @@ app.get('https://fullstack2-0.onrender.com/api/notes/:id', (request, response, n
     .catch(error => next(error))
 })
 
-app.delete('https://fullstack2-0.onrender.com/api/notes/:id', (request, response, next) => {
+app.delete('/api/notes/:id', (request, response, next) => {
   Note.findByIdAndDelete(request.params.id)
     .then(result => {
       response.status(204).end()
@@ -117,7 +117,7 @@ app.delete('https://fullstack2-0.onrender.com/api/notes/:id', (request, response
     .catch(error => next(error))
 })
 
-app.put('https://fullstack2-0.onrender.com/api/notes/:id', (request, response, next) => {
+app.put('/api/notes/:id', (request, response, next) => {
 
   const { content, important } = request.body
 
